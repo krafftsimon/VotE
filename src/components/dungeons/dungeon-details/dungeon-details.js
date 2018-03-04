@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import KUTE from 'kute.js';
 import 'kute.js/kute-css';
-import Linkify from 'react-linkify';
 import './dungeon-details.css';
 
 class DungeonDetails extends Component {
@@ -18,8 +17,8 @@ class DungeonDetails extends Component {
   }
 
   componentDidMount() {
-    this.tween1 = KUTE.to(`#dung${this.props.id}`, {height: '650px'}, {duration: 300});
-    this.tween2 = KUTE.to(`#dung${this.props.id}`, {height: '150px'}, {duration: 300});
+    this.tween1 = KUTE.to(`#dung${this.props.id}`, {height: '650px'}, {duration: 1000, easing: 'easingExponentialOut'});
+    this.tween2 = KUTE.to(`#dung${this.props.id}`, {height: '150px'}, {duration: 1000, easing: 'easingExponentialOut'});
   }
 
   toggleDungeonDetails() {
@@ -35,6 +34,13 @@ class DungeonDetails extends Component {
   toggleBossDetails(index, event) {
     event.stopPropagation();
     if (this.state.bossDetailsOpened === index) {
+      if (event.target.classList[0] === "scroll") {
+        event.target.scrollTop = 0
+      } else if (event.target.parentElement.classList[0] === "scroll") {
+        event.target.parentElement.scrollTop = 0
+      } else if (event.target.parentElement.parentElement.classList[0] === "scroll") {
+        event.target.parentElement.parentElement.scrollTop = 0
+      }
       this.setState({
         bossDetailsOpened: null
       })
@@ -50,18 +56,18 @@ class DungeonDetails extends Component {
     if (bossCount === 3) {
       return this.props.dungeon.bosses.map((boss, index) => {
         return (
-          <div className={this.state.bossDetailsOpened === index ? `boss-group-${bossCount} expand` : `boss-group-${bossCount} close-${bossCount}`}
+          <div className={this.state.bossDetailsOpened === index ? `scroll boss-group-${bossCount} expand scrollable` : `scroll boss-group-${bossCount} close-${bossCount}`}
             id={`boss${index}-${bossCount}`}
             onClick={this.toggleBossDetails.bind(this, index)}>
             <div className={`boss-description-div-${bossCount}`}>
-              <img className={`boss-img-${bossCount}`} src={require('../../../pictures/' + boss.imgUrl)} />
+              <img className={`boss-img-${bossCount}`} src={require('../../../pictures/' + boss.imgUrl)} alt=""/>
               <div className="boss-description">
                 {boss.name}
               </div>
             </div>
             <ol className="strat-list">
               {boss.strategy.map(strat => {
-                return <li> <Linkify> {strat} </Linkify> </li>
+                return <li> {strat} </li>
               })}
             </ol>
           </div>
@@ -71,18 +77,18 @@ class DungeonDetails extends Component {
     if (bossCount === 4) {
       return this.props.dungeon.bosses.map((boss, index) => {
         return (
-          <div className={this.state.bossDetailsOpened === index ? `boss-group-${bossCount} expand` : `boss-group-${bossCount} close-${bossCount}`}
+          <div className={this.state.bossDetailsOpened === index ? `scroll boss-group-${bossCount} expand scrollable` : `scroll boss-group-${bossCount} close-${bossCount}`}
             id={`boss${index}-${bossCount}`}
             onClick={this.toggleBossDetails.bind(this, index)}>
             <div className={`boss-description-div-${bossCount}`}>
-              <img className={`boss-img-${bossCount}`} src={require('../../../pictures/' + boss.imgUrl)} />
+              <img className={`boss-img-${bossCount}`} src={require('../../../pictures/' + boss.imgUrl)} alt=""/>
               <div className="boss-description">
                 {boss.name}
               </div>
             </div>
             <ol className="strat-list">
               {boss.strategy.map(strat => {
-                return <li> <Linkify> {strat} </Linkify> </li>
+                return <li> {strat} </li>
               })}
             </ol>
           </div>
@@ -92,18 +98,18 @@ class DungeonDetails extends Component {
     if (bossCount === 5) {
       return this.props.dungeon.bosses.map((boss, index) => {
         return (
-          <div className={this.state.bossDetailsOpened === index ? `boss-group-${bossCount} expand` : `boss-group-${bossCount} close-${bossCount}`}
+          <div className={this.state.bossDetailsOpened === index ? `scroll boss-group-${bossCount} expand scrollable` : `scroll boss-group-${bossCount} close-${bossCount}`}
             id={`boss${index}-${bossCount}`}
             onClick={this.toggleBossDetails.bind(this, index)}>
             <div className={`boss-description-div-${bossCount}`}>
-              <img className={`boss-img-${bossCount}`} src={require('../../../pictures/' + boss.imgUrl)} />
+              <img className={`boss-img-${bossCount}`} src={require('../../../pictures/' + boss.imgUrl)} alt=""/>
               <div className="boss-description">
                 {boss.name}
               </div>
             </div>
             <ol className="strat-list">
               {boss.strategy.map(strat => {
-                return <li> <Linkify> {strat} </Linkify> </li>
+                return <li> {strat} </li>
               })}
             </ol>
           </div>
@@ -116,7 +122,6 @@ class DungeonDetails extends Component {
     const dungImgUrl = require('../../../pictures/' + this.props.dungeon.imgUrl);
     return (
       <div>
-        <a href="http://www.wowhead.com/spell=194956/reap-soul">asda</a>
         <div className="dungeon-group" id={`dung${this.props.id}`} onClick={this.toggleDungeonDetails.bind(this)} style={{backgroundImage: "url(" + dungImgUrl + ")"}}>
           <div className="dungeon-title"> {this.props.dungeon.name} </div>
           <div className="dungeon-content">

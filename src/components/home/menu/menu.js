@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from "react-router-dom";
 import KUTE from 'kute.js'
 import 'kute.js/kute-css';
@@ -14,6 +13,7 @@ class Menu extends Component {
     this.tween2 = null;
     this.tween3 = null;
     this.tween4 = null;
+    this.clickEventActive = false;
   }
 
   componentDidMount() {
@@ -21,17 +21,27 @@ class Menu extends Component {
     this.tween2 = KUTE.allFromTo('.dropdown-arrow',{rotate: 45}, {rotate: 225}, {duration: 250, easing: 'easingSinusoidalOut'});
     this.tween3 = KUTE.to('.home-menu',{height:0}, {duration: 400, easing: 'easingQuinticOut'});
     this.tween4 = KUTE.allTo('.dropdown-arrow',{rotate: 45}, {duration: 250, easing: 'easingSinusoidalOut'});
+    document.addEventListener('click', this.closeMenu.bind(this));
+    document.addEventListener('touchend', this.closeMenu.bind(this));
   }
 
-  toggleMenu() {
+  closeMenu() {
+    if (this.clickEventActive) {
+      this.tween3.start();
+      this.tween4.start();
+      this.menuActive = false;
+      this.clickEventActive = false;
+    }
+  }
+
+  openMenu() {
     if (this.menuActive === false) {
       this.tween1.start();
       this.tween2.start();
       this.menuActive = true;
-    } else {
-      this.tween3.start();
-      this.tween4.start();
-      this.menuActive = false;
+      setTimeout(() => {
+        this.clickEventActive = true;
+      }, 10)
     }
   }
 
@@ -39,7 +49,7 @@ class Menu extends Component {
     return (
       <div className="button-container">
         <div className="nav-button">
-          <div className="nav-button-helper" onClick={this.toggleMenu.bind(this)}>
+          <div className="nav-button-helper" onClick={this.openMenu.bind(this)}>
             MENU <span className="dropdown-arrow"></span>
           </div>
           MENU <span className="dropdown-arrow"></span>
@@ -57,8 +67,8 @@ class Menu extends Component {
               Dungeons
             </div>
             <div className="home-menu-item">
-              <Link className="home-menu-item-helper" to="/affixes"> Truc Final </Link>
-              Truc Final
+              <Link className="home-menu-item-helper" to="/affixes"> Page 3 </Link>
+              Page 3
             </div>
           </div>
         </div>

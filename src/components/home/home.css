@@ -1,14 +1,17 @@
 .title-div {
   height: 100vh;
+  min-height: 500px;
   overflow: auto;
   text-align: center;
-  background-image: linear-gradient(rgba(74, 17, 141, 0) 10%, #061649 100%);
+  background-image: linear-gradient(rgba(74, 17, 141, 0) 10%, #061649 100%),  url('../../pictures/wp10.jpg');
+  background-position: center center;
+  background-size: cover;
 }
 
 .content-div {
   min-height: 100vh;
   text-align: center;
-  background-image: linear-gradient(#061649 50%, #073977);
+  background-image: radial-gradient(farthest-side at 150% 55%, rgba(6,22,73,1), rgba(6,22,73,1) 70%); /*rgba(74, 17, 141, 1)*/
   padding: 0.1px;
 }
 
@@ -24,10 +27,13 @@
   animation: arrow-hover infinite 1.5s linear;
   position: absolute;
   bottom: 40px;
+  left: calc(50% - 20px);
 }
+
 .waypoint-line {
   border-top: 1px dashed red;
 }
+
 .home-arrow:hover {
   background-color: rgba(78,16,144,0.4);
   box-shadow: 0px 0px 64px 0px rgba(78,16,144,1);

@@ -2,19 +2,23 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-image: url('./pictures/wp10.jpg');
-  background-position: center center;
-  background-size: cover;
+  background-color: #061649;
   font-family: 'Nunito', sans-serif;
+  height: 100%;
 }
 
 html {
   height: 100%;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 h1 {
-  font-size: 140px;
+  font-size: calc(50px + 2vw);
   color: white;
   margin: 120px 0 40px 0;
   font-weight: normal;

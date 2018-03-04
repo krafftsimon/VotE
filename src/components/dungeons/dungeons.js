@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import KUTE from 'kute.js';
-import 'kute.js/kute-css';
 import './dungeons.css';
 
 import Menu from '../home/menu/menu';
@@ -11,11 +9,17 @@ const dungList = dungeonsList;
 
 class Dungeons extends Component {
 
-  constructor() {
-    super();
+  componentDidMount() {
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    //console.log("asd");
+    //window.whTooltips = {colorLinks: true, iconSize: 'small', iconizeLinks: true, renameLinks: true};
+    //const [ head ] = document.getElementsByTagName('head');
+    //const script = document.createElement('script');
+    //script.type = 'text/javascript';
+    //script.src = '//wow.zamimg.com/widgets/power.js';
+    //head.appendChild(script);
   }
 
   renderDungeons() {
@@ -28,10 +32,12 @@ class Dungeons extends Component {
 
   render() {
     return (
-      <div className="dungeons-background">
+      <div>
+        <div className="dungeons-background" />
         <Menu />
-        <div className="spacer-div"></div>
+        <div className="spacer-div" />
         {this.renderDungeons()}
+        <div className="spacer-div" />
       </div>
     );
   }

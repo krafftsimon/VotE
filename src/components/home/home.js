@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from "react-router-dom";
 import Waypoint from 'react-waypoint';
 import './home.css';
 
 import Menu from './menu/menu';
-import { FeatRight } from './feat-right/feat-right';
-import { FeatLeft } from './feat-left/feat-left';
+import { Feature1 } from './feature1/feature1';
+import { Feature2 } from './feature2/feature2';
+import { Feature3 } from './feature3/feature3';
 
 const listFeat1 = [
   'List of mythic plus affixes active this week.',
@@ -39,7 +38,7 @@ class Home extends Component {
     this.state = {
       arrowVisible: true,
     }
-    
+
   }
 
   //componentDidMount(){
@@ -60,16 +59,16 @@ class Home extends Component {
       <div>
         <div className="title-div">
           <Menu />
-          <h1> Palakapou </h1>
-          <h2 className="subtitle"> Lorem ipsum Lorem Ipsum Lorem ipsum Lorem Ipsum </h2>
-          <img className={this.state.arrowVisible ? "home-arrow" : "not-visible home-arrow"} src={require('../../pictures/arrow.png')}></img>
+          <h1> Vault of the Enlightened </h1>
+          <h2 className="subtitle"> Everything you need to know about Mythic plus dungeons.</h2>
+          <img className={this.state.arrowVisible ? "home-arrow" : "not-visible home-arrow"} src={require('../../pictures/arrow.png')} alt=""></img>
         </div>
 
         <div className="content-div">
           <Waypoint onEnter={this.handleWaypointEnter.bind(this)} bottomOffset="350px"/>
-          <FeatRight featList={listFeat1} listNumber={1} />
-          <FeatLeft featList={listFeat2} listNumber={2}/>
-          <FeatRight featList={listFeat3} listNumber={3} />
+          <Feature1 featList={listFeat1} listNumber={1} />
+          <Feature2 featList={listFeat2} listNumber={2}/>
+          <Feature3 featList={listFeat3} listNumber={3} />
         </div>
       </div>
     );

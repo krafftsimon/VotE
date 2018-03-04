@@ -117,7 +117,6 @@ const allAffixes = [
   },
 ]
 
-
 const affixesRotation =[
   [6, 3, 9],
   [5, 13, 10],
@@ -140,7 +139,7 @@ class Affixes extends Component {
     this.state = {
       affixes: null,
     }
-    this.currentRegion = 'us',
+    this.currentRegion = 'us';
     this.affixesUS = null;
     this.affixesEU = null;
     this.affixesKR = null;
@@ -154,13 +153,11 @@ class Affixes extends Component {
     this.tween1 = KUTE.to('#us', {marginLeft:'-200%'}, {duration: 300, easing	: 'easingSinusoidalOut'});
     this.tween2 = KUTE.to('#us', {marginLeft:'-100%'}, {duration: 300, easing	: 'easingSinusoidalOut'});
     this.tween3 = KUTE.to('#us', {marginLeft:'0%'}, {duration: 300, easing	: 'easingSinusoidalOut'});
-    this.props.fetchAffixes('us', () => {
-      this.calculateAffixes();
-    });
+    this.props.fetchAffixes('us');
   }
 
-  calculateAffixes() {
-    setTimeout(() => {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
       let curAffixes = [
         this.props.affixes[this.currentRegion].affix_details[0].id,
         this.props.affixes[this.currentRegion].affix_details[1].id,
@@ -170,18 +167,17 @@ class Affixes extends Component {
         if (curAffixes[0]  === affixesRotation[i][0] &&
           curAffixes[1]  === affixesRotation[i][1] &&
           curAffixes[2]  === affixesRotation[i][2]) {
-            this.positionInRotation = i
+            this.positionInRotation = i;
             break;
         }
       }
-      let temp = []
+      let temp = [];
       temp.push([allAffixes[curAffixes[0]], allAffixes[curAffixes[1]], allAffixes[curAffixes[2]]])
-      temp.push([allAffixes[affixesRotation[this.positionInRotation + 1][0]], allAffixes[affixesRotation[this.positionInRotation + 1][1]], allAffixes[affixesRotation[this.positionInRotation + 1][2]]])
-      temp.push([allAffixes[affixesRotation[this.positionInRotation + 2][0]], allAffixes[affixesRotation[this.positionInRotation + 2][1]], allAffixes[affixesRotation[this.positionInRotation + 2][2]]])
+      temp.push([allAffixes[affixesRotation[(this.positionInRotation + 1) % 12][0]], allAffixes[affixesRotation[(this.positionInRotation + 1) % 12][1]], allAffixes[affixesRotation[(this.positionInRotation + 1) % 12][2]]])
+      temp.push([allAffixes[affixesRotation[(this.positionInRotation + 2) % 12][0]], allAffixes[affixesRotation[(this.positionInRotation + 2) % 12][1]], allAffixes[affixesRotation[(this.positionInRotation + 2) % 12][2]]])
       this.setState({
         affixes: temp,
       })
-
       if (this.currentRegion === 'us') {
         this.affixesUS = temp;
       } else if (this.currentRegion === 'eu') {
@@ -189,11 +185,16 @@ class Affixes extends Component {
       } else {
         this.affixesKR = temp;
       }
+    }
+  }
+
+  calculateAffixes() {
+    setTimeout(() => {
+
     }, 500);
   }
 
   nextRegion() {
-    console.log(this.affixesUS)
     if (this.currentRegion === 'us') {
       this.currentRegion = 'eu'
       this.tween2.start();
@@ -263,8 +264,10 @@ class Affixes extends Component {
 
   render() {
     return (
-      <div className="affixes-background">
+      <div>
+        <div className="affixes-background" />
         <Menu />
+        <div className="spacer-div" />
         <div className="region-selector-div">
           <div className="region-div">
             <div className="region" id="us">US</div>

@@ -22,9 +22,9 @@ class AffixesList extends Component {
   }
 
   componentDidMount() {
-    this.tween1 = KUTE.to('.week-group', {marginLeft:'-200%'}, {duration: 400});
-    this.tween2 = KUTE.to('.week-group', {marginLeft:'-100%'}, {duration: 400});
-    this.tween3 = KUTE.to('.week-group', {marginLeft:'0%'}, {duration: 400});
+    this.tween1 = KUTE.to('.week-group', {marginLeft:'-200%'}, {duration: 500, easing: 'easingQuinticInOut'});
+    this.tween2 = KUTE.to('.week-group', {marginLeft:'-100%'}, {duration: 500, easing: 'easingQuinticInOut'});
+    this.tween3 = KUTE.to('.week-group', {marginLeft:'0%'}, {duration: 500, easing: 'easingQuinticInOut'});
   }
 
   nextWeek() {
@@ -58,6 +58,10 @@ class AffixesList extends Component {
     );
   }
 
+  navToWowhead(id, week) {
+    window.location.href = this.props.affixes[week][id].wowhead_url;
+  }
+
   renderAffixGroup(id, week) {
     if (!this.props.affixes) {
       return (
@@ -70,9 +74,9 @@ class AffixesList extends Component {
     }
     const affixImgUrl = this.props.affixes[week][id].img_url;
     return (
-      <div className="affix-group">
+      <div className="affix-group" onClick={() => this.navToWowhead(id, week)}>
         <div>
-          <img className="affix-img" src={require('../../../pictures/' + affixImgUrl)}/>
+          <img className="affix-img" src={require('../../../pictures/' + affixImgUrl)} alt=""/>
         </div>
         <div className="affix-text-div">
           <h3> {this.props.affixes[week][id].name} </h3>

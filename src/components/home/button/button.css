@@ -1,0 +1,33 @@
+.home-begin-btn {
+  height: 70px;
+  width: 200px;
+  line-height: 70px;
+  box-shadow: 1px 0px 24px 1px rgba(0, 0, 0, 1),
+              1px 0px 24px 0px rgba(11, 116, 245, 1);
+  background-image: linear-gradient(to right,#033AA8 , #0052F8);
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.home-begin-btn-helper {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  background-image: radial-gradient(bottom center, #4A118D -10%, #0052F8 60%);
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: absolute;
+  transition: opacity 0.5s;
+  text-decoration: none;
+}
+
+.home-begin-btn-helper:hover {
+  opacity: 1;
+}

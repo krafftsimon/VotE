@@ -41,13 +41,6 @@ class Home extends Component {
 
   }
 
-  //componentDidMount(){
-  //  window.addEventListener('scroll', this.showComponent.bind(this));
-  //}
-
-  //showComponent() {
-  //}
-
   handleWaypointEnter() {
     this.setState({
       arrowVisible: false

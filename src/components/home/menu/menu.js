@@ -22,7 +22,7 @@ class Menu extends Component {
     this.tween3 = KUTE.to('.home-menu',{height:0}, {duration: 400, easing: 'easingQuinticOut'});
     this.tween4 = KUTE.allTo('.dropdown-arrow',{rotate: 45}, {duration: 250, easing: 'easingSinusoidalOut'});
     document.addEventListener('click', this.closeMenu.bind(this));
-    document.addEventListener('touchend', this.closeMenu.bind(this));
+    document.addEventListener('touchstart', this.closeMenu.bind(this));
   }
 
   closeMenu() {
@@ -30,12 +30,14 @@ class Menu extends Component {
       this.tween3.start();
       this.tween4.start();
       this.menuActive = false;
-      this.clickEventActive = false;
+      setTimeout(() => {
+        this.clickEventActive = false;
+      }, 100)
     }
   }
 
   openMenu() {
-    if (this.menuActive === false) {
+    if (!this.menuActive) {
       this.tween1.start();
       this.tween2.start();
       this.menuActive = true;

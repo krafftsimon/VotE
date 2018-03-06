@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Waypoint from 'react-waypoint';
 import KUTE from 'kute.js';
 import 'kute.js/kute-css';

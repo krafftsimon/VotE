@@ -22,7 +22,7 @@ class Menu extends Component {
     this.tween3 = KUTE.to('.home-menu',{height:0}, {duration: 400, easing: 'easingQuinticOut'});
     this.tween4 = KUTE.allTo('.dropdown-arrow',{rotate: 45}, {duration: 250, easing: 'easingSinusoidalOut'});
     document.addEventListener('click', this.closeMenu.bind(this));
-    document.addEventListener('touchstart', this.closeMenu.bind(this));
+    document.addEventListener('touchend', this.closeMenu.bind(this));
   }
 
   closeMenu() {

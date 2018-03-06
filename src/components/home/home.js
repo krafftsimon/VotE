@@ -52,7 +52,7 @@ class Home extends Component {
       <div>
         <div className="title-div">
           <Menu />
-          <h1> Vault of the Enlightened </h1>
+          <h1 className="home-title"> Vault of the Enlightened </h1>
           <h2 className="subtitle"> Everything you need to know about Mythic plus dungeons.</h2>
           <img className={this.state.arrowVisible ? "home-arrow" : "not-visible home-arrow"} src={require('../../pictures/arrow.png')} alt=""></img>
         </div>

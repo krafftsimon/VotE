@@ -104,6 +104,13 @@
   opacity: 1;
 }
 
+@media only screen and (max-width: 920px) {
+  .button-container {
+    margin: 20px auto 0 auto;
+    padding-right: 20px;
+  }
+}
+
 @media only screen and (max-width: 460px) {
   .button-container {
     padding-right: 0;

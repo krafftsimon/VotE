@@ -21,6 +21,14 @@
   text-shadow: 3px 3px 2px black;
 }
 
+.home-title {
+  font-size: calc(30px + 2vw);
+  color: white;
+  margin: 120px 0 40px 0;
+  font-weight: normal;
+  text-shadow: 4px 4px 6px black;
+}
+
 .home-arrow {
   width: 40px;
   height: 50px;
@@ -47,4 +55,20 @@
 
 .not-visible {
   opacity: 0;
+}
+
+@media only screen and (max-width: 920px) {
+  .home-title {
+    margin: 20px 0 20px 0;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .home-title {
+    margin: 140px 0 40px 0;
+  }
+
+  .subtitle {
+    font-size: 24px;
+  }
 }

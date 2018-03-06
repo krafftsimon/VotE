@@ -18,9 +18,9 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
-        <Route path="/dungeons" component={Dungeons} />
-        <Route path="/affixes" component={Affixes} />
-        <Route path="/" component={Home} />
+        <Route path="/dungeons" component={Dungeons} render={() => window.scrollTo(0, 0)} />
+        <Route path="/affixes" component={Affixes} render={() => window.scrollTo(0, 0)} />
+        <Route path="/" component={Home} render={() => window.scrollTo(0, 0)} />
       </Switch>
     </BrowserRouter>
   </Provider>,

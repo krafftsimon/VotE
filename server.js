@@ -2,6 +2,17 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+
+app.get('*.js', (req, res, next) => {
+  console.log(req.url.substring(0,15))
+  if (req.url.substring(0,15) === '/static/js/main') {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    res.set('Content-Type', 'application/javascript');
+    next();
+  }
+})
+
 // Serve static files
 app.use(express.static(path.join(__dirname, 'build')));
 
